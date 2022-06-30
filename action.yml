@@ -1,7 +1,7 @@
 # action.yml
-name: 'AUR publish docker'
+name: 'AUR publish'
 description: 'Publish an AUR package'
-author: guumaster
+author: zu1k,guumaster
 branding:
   color: green
   icon: upload
@@ -18,9 +18,12 @@ inputs:
   ssh_private_key:
     description: 'Your private key with access to AUR package.'
     required: true
+  new_release:
+    description: 'release pkgver'
+    required: true
 
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.package_name }} ${{ inputs.commit_username }} ${{ inputs.commit_email }} ${{ inputs.ssh_private_key }}
+    - ${{ inputs.package_name }} ${{ inputs.commit_username }} ${{ inputs.commit_email }} ${{ inputs.ssh_private_key }} ${{ inputs.new_release }}
